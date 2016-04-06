@@ -1,0 +1,4 @@
+atlastiles:
+  build: .
+  ports:
+    - "8091:80"
