@@ -28,11 +28,11 @@ node {
         sh "docker-compose build"
     }
 
-    stage "Build develop image"
+    stage "Build master image"
     tryStep "build", {
         def image = docker.build("admin.datapunt.amsterdam.nl:5000/atlas/tiles:${env.BUILD_NUMBER}")
         image.push()
-        image.push("develop")
+        image.push("master")
     }
 }
 
