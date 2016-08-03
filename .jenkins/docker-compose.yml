@@ -1,0 +1,13 @@
+atlastiles:
+  build: ..
+  ports:
+    - "80"
+  volumes:
+    - .:/mnt/tiles/topo_rd_cache_EPSG28992/
+
+
+tests:
+  build: ..
+  links:
+    - atlastiles:atlastiles
+  command: run_tests.sh

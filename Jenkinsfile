@@ -28,6 +28,13 @@ node {
         sh "docker-compose build"
     }
 
+stage 'Test'
+    tryStep "test", {
+        sh "docker-compose -p atlas_tiles run --rm tests"
+    }, {
+        sh "docker-compose down"
+    }
+
     stage "Build master image"
     tryStep "build", {
         def image = docker.build("admin.datapunt.amsterdam.nl:5000/atlas/tiles:${env.BUILD_NUMBER}")
