@@ -28,9 +28,9 @@ node {
         sh "docker-compose build"
     }
 
-stage 'Test'
+    stage 'Test'
     tryStep "test", {
-        sh "docker-compose -p atlas_tiles run --rm tests"
+        sh "docker-compose -p atlas_tiles -f .jenkins/docker-compose.yml run -u root --rm tests"
     }, {
         sh "docker-compose down"
     }
