@@ -1,4 +1,4 @@
-atlastiles:
+tiles:
   build: .
   ports:
     - "80"

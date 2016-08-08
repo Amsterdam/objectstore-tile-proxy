@@ -1,4 +1,4 @@
-atlastiles:
+tiles:
   build: ..
   ports:
     - "80"
@@ -9,5 +9,5 @@ atlastiles:
 tests:
   build: ..
   links:
-    - atlastiles:atlastiles
+    - tiles:tiles
   command: run_tests.sh

@@ -1,3 +1,3 @@
-# atlas_tiles
-Atlas Tiles proxy
+# Tiles
+Tiles proxy
 
