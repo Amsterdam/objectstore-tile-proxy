@@ -27,13 +27,13 @@ node {
     tryStep "build", {
         sh "docker-compose build"
     }
-
-    stage 'Test'
-    tryStep "test", {
-        sh "docker-compose -p objectstore -f .jenkins/docker-compose.yml run -u root --rm tests"
-    }, {
-        sh "docker-compose down"
-    }
+--
+--    stage 'Test'
+--    tryStep "test", {
+--        sh "docker-compose -p objectstore -f .jenkins/docker-compose.yml run -u root --rm tests"
+--    }, {
+--        sh "docker-compose down"
+--    }
 
     stage "Build master image"
     tryStep "build", {
