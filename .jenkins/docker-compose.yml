@@ -1,13 +1,10 @@
-tiles:
+objectstore:
   build: ..
   ports:
     - "80"
-  volumes:
-    - .:/mnt/tiles/topo_rd_cache_EPSG28992/
-
 
 tests:
   build: ..
   links:
-    - tiles:tiles
+    - objectstore:objectstore
   command: run_tests.sh

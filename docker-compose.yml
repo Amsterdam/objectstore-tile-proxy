@@ -1,4 +1,4 @@
-tiles:
+objectstore:
   build: .
   ports:
     - "80"

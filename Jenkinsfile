@@ -30,14 +30,14 @@ node {
 
     stage 'Test'
     tryStep "test", {
-        sh "docker-compose -p atlas_tiles -f .jenkins/docker-compose.yml run -u root --rm tests"
+        sh "docker-compose -p objectstore -f .jenkins/docker-compose.yml run -u root --rm tests"
     }, {
         sh "docker-compose down"
     }
 
     stage "Build master image"
     tryStep "build", {
-        def image = docker.build("admin.datapunt.amsterdam.nl:5000/atlas/tiles:${env.BUILD_NUMBER}")
+        def image = docker.build("admin.datapunt.amsterdam.nl:5000/datapunt/objectstore:${env.BUILD_NUMBER}")
         image.push()
         image.push("master")
     }
@@ -49,7 +49,7 @@ node {
         build job: 'Subtask_Openstack_Playbook',
                 parameters: [
                         [$class: 'StringParameterValue', name: 'INVENTORY', value: 'acceptance'],
-                        [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-tiles.yml'],
+                        [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-objectstore.yml'],
                         [$class: 'StringParameterValue', name: 'BRANCH', value: 'master'],
                 ]
     }
@@ -64,7 +64,7 @@ input "Deploy to Production?"
 node {
     stage 'Build production image'
     tryStep "image tagging", {
-        def image = docker.image("admin.datapunt.amsterdam.nl:5000/atlas/tiles:${env.BUILD_NUMBER}")
+        def image = docker.image("admin.datapunt.amsterdam.nl:5000/datapunt/objectstore:${env.BUILD_NUMBER}")
         image.pull()
 
         image.push("master")
@@ -78,7 +78,7 @@ node {
         build job: 'Subtask_Openstack_Playbook',
                 parameters: [
                         [$class: 'StringParameterValue', name: 'INVENTORY', value: 'production'],
-                        [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-tiles.yml'],
+                        [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'deploy-objectstore.yml'],
                         [$class: 'StringParameterValue', name: 'BRANCH', value: 'master'],
                 ]
     }
