@@ -14,6 +14,6 @@ curl -s http://objectstore:80/status/health/ | grep 'objectstore OK'
 echo "HTTP server serving objectstore"
 
 # do the tile locations work as expected?
-curl -s http://objectstore:80/tms/1.0.0/topo_RD/EPSG28992/fake-tile.txt | grep 'I AM A FAKE objectstore'
+curl -s https://ffb7a5a57dd34cc49436abc510cad162.objectstore.eu/tiles/lufo2011_rd_cache_EPSG28992/fake-tile.txt | grep 'I AM A FAKE objectstore'
 echo "HTTP server serving objectstore"
 
