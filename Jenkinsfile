@@ -25,10 +25,11 @@ node {
 
 
     stage("Build develop image") {
-    tryStep "build", {
-        def image = docker.build("admin.datapunt.amsterdam.nl:5000/datapunt/objectstore:${env.BUILD_NUMBER}")
-        image.push()
-        image.push("develop")
+        tryStep "build", {
+            def image = docker.build("admin.datapunt.amsterdam.nl:5000/datapunt/objectstore:${env.BUILD_NUMBER}")
+            image.push()
+            image.push("develop")
+        }
     }
 }
 
