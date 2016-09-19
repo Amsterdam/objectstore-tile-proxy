@@ -28,9 +28,7 @@ node {
         tryStep "build", {
             def image = docker.build("admin.datapunt.amsterdam.nl:5000/datapunt/objectstore:${env.BUILD_NUMBER}")
             image.push()
-            image.push("develop")
             image.push("acceptance")
-            image.push("production")
         }
     }
 }
@@ -49,7 +47,7 @@ node {
 
 
 stage('Waiting for approval') {
-    slackSend channel: '#ci-channel', color: 'warning', message: 'Zelfbediening is waiting for Production Release - please confirm'
+    slackSend channel: '#ci-channel', color: 'warning', message: 'Objectstore is waiting for Production Release - please confirm'
     input "Deploy to Production?"
 }
 
