@@ -1,6 +1,9 @@
 FROM nginx:latest
 MAINTAINER datapunt.ois@amsterdam.nl
 
+ARG OS_PASS_BOMMENKAART
+ENV OS_PASS_BOMMENKAART=$OS_PASS_BOMMENKAART
+
 EXPOSE 80
 
 RUN apt-get update \
