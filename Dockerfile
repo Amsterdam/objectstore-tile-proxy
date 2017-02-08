@@ -13,3 +13,5 @@ RUN apt-get update \
 COPY default.conf /etc/nginx/conf.d/
 COPY health.txt /srv/www/health/index.html
 COPY .jenkins/run_tests.sh /usr/local/bin/
+
+RUN sed -i "s/__OS_USER_PASS_ENCODED__/$OS_USER_PASS_ENCODED/g" /etc/nginx/conf.d/default.conf
